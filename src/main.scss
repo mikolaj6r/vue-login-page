@@ -1,0 +1,339 @@
+@charset 'UTF-8';
+
+
+$main-width: 1200px;
+
+$tablet-width: 720px;
+$desktop-width: 1024px;
+$phone-width: 360px;
+
+@mixin middle {
+  @media (min-width: #{$phone-width + 1px}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin responsive {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+@mixin phone {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin tablet{
+  @media (min-width: #{$tablet-width} ){
+    @content;
+  }
+}
+
+:root{
+
+}
+*{
+    font-family: "Montserrat";
+    font-size: 16px;
+	box-sizing: border-box;
+}
+
+body, html{
+	overflow-x: hidden;
+	margin: 0;
+}
+body{
+	background: #f9f9f9 url(../images/background.png) center center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+	width: 646px;
+	background-color: rgb(249, 249, 249);
+	box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.32);
+	
+	.box_header {
+		background-color: #0094bb;
+		width: 100%;
+		height: 110px;
+		display: flex;
+		
+		.header_left{
+			width: 208px;
+
+			.header_img{
+				width: 137px;
+				height: 137px;
+				border-radius: 50%;
+				border: 2px solid #0094bb;
+				background: #e5e5e5 url(../images/user.png) 42% 18%/160% auto no-repeat;
+				overflow: hidden;
+				margin: 0 auto;
+				position: relative;
+				transform: translateY(calc(-27px/2));
+			}
+		}
+		
+		.header_title{
+			font-size: 31px;
+			margin: 0;
+			line-height: 110px;
+			color: white;
+		}
+	}
+	.box_content{
+		width:100%;
+		min-height: 278px;
+		height: auto;
+		padding: 36px 46px;
+
+		.content_msg{
+			font-size: 14px;
+			max-width: 70%;
+			font-weight: bold;
+			color: #7d7d7d;
+		}
+		
+		.content_label {
+			display: block;
+			font-weight: 900;
+			color: #696969;
+			margin: 0 0 32px 0;
+			position: relative;
+			
+			
+			&::before {
+				content: "required";
+				position: absolute;
+				top: -15px;
+				right: -27px;
+				background: #0094bb;
+				color: white;
+				padding: 8px 18px;
+				font-size: 12px;
+				border-radius: 8px;
+				display: none;
+			}
+			&::after {
+				content: "";
+				position: absolute;
+				top: 15px;
+				right: 0px;
+				border-left: 10px solid rgba(255, 255, 255, 0);
+				border-right: 10px solid rgba(255, 255, 255, 0);
+				border-top: 10px solid #0094bb;
+				display: none;
+			}
+			
+			
+			&.require-hover::before, &.require-hover::after {
+				display: block;
+			}
+			
+			.content_input{
+				color: rgb(105, 105, 105);
+
+				&.content_checkbox {
+					position: relative;
+					margin: 0 19px 0 0px;
+					height: 18px;
+					cursor: pointer;
+
+					&::before{
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 24px;
+						height: 24px;
+						background: rgb(229, 229, 229);
+						border-radius: 5px;
+						border: 1px solid rgb(172, 172, 172);
+						box-sizing: border-box;
+					}
+					&:checked::before {
+					   background: white;
+					}
+					&:after {
+						content: "";
+						position: absolute;
+						top: -8px;
+						left: -8px;
+						width: 40px;
+						height: 40px;
+						background: url(../images/mark.png);
+						background-repeat: no-repeat;
+						background-position: center center;
+						background-size: 30px;
+						border-radius: 5px;
+						box-sizing: border-box;
+						opacity: 0;
+					}
+					&:checked:after {
+						opacity: 1;
+					}
+				}
+				&:not(.content_checkbox) {
+					display: block;
+					width: 100%;
+					padding: 14px;
+					font-weight: 900;
+					border-radius: 4px;
+					border: 1px solid rgb(172, 172, 172);
+					background-color: rgb(255, 255, 255);
+					box-shadow: inset 0px 0px 6px 0px rgba(2, 2, 2, 0.196); 
+				}
+				::placeholder {
+					color: rgb(183,183,183);
+				}
+			}
+			.content_wrapper{
+				position: relative;
+				display: block;
+				border-radius: 5px;
+				overflow: hidden;
+				margin: 8px 0;
+
+				&::after, &::before {
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 0;
+					height: 0;
+					content: "";
+				}
+				&::before {
+					border-style: solid;
+					border-width: 32px 0 0 50px;
+					border-color: #0094bb rgba(0, 0, 255, 0) rgba(0, 0, 255, 0) rgba(0, 0, 255, 0);
+				}
+				&::after {
+					content: "*";
+					color: white;
+					width: 10px;
+					height: 10px;
+					top: 5px;
+					right: 4px;
+					font-size: 18px;
+				}	
+				
+				.content_require {
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 0;
+					height: 0;
+					z-index: 3;
+					border-style: solid;
+					border-width: 32px 0 0 50px;
+					border-color: transparent;
+					cursor: pointer;
+				}
+				.content_wrapper-msg {
+					color: #cc0849;
+				}
+			}
+		}
+	}
+	.box_footer {
+		width: 100%;
+		height: 119px;
+		background-color: #e5e5e5;
+		border-top: 1px solid #acacac;
+		display: flex;
+		align-items: center;
+		padding: 26px 48px;
+		 
+		&.reset {
+			justify-content: space-between;
+			
+			button:first-of-type {
+				color: #cc0849;
+				
+				&:hover{
+					color: white;
+					background: #cc0849;
+				}
+			}
+		}
+		 
+		&.login {
+			justify-content: flex-end;
+		}
+		
+		
+		button{
+			font-weight: bold;
+			color: rgb(172, 172, 172);
+			border: 1px solid;
+			border-radius: 5px;
+			background: white;
+			padding: 18px 36px;
+			
+			&:hover, &:focus, &:active{
+			    cursor: pointer;
+				color: white;
+    			background: #0094bb;
+			}
+		}
+		a{
+			color: #0094bb;
+			font-weight: bold;
+			margin: 0 40px 0 0;
+			
+			&:hover, &:focus, &:active{
+			    cursor: pointer;
+			}
+
+		}
+	}
+}
+@include phone{
+	.box .box_header .header_left .header_img {
+		transform: translateY(0);
+	}
+
+	.box {
+		width: 100%;
+	}
+
+	body {
+		height: auto;
+	}
+
+	.box .box_header .header_title {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		display: flex;
+		align-items: center;
+	}
+
+	.box .box_content {
+		padding: 36px 23px;
+	}
+
+	.box .box_content .content_label::before {
+		right: -27px;
+	}
+
+	.box .box_footer button {
+		margin: 0 16px;
+		padding: 18px;
+	}
+
+	.box .box_footer a {
+		margin: 0 8px;
+	}
+	.box .box_footer.reset {
+		justify-content: center;
+	}
+}

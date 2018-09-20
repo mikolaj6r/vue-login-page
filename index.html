@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8">
+	<title>Lel</title>
+	<meta name="description" content="Zadanie Techniczne ">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#0094bb">
+	<meta name="msapplication-TileColor" content="#0094bb">
+	<meta name="theme-color" content="#0094bb" >
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="assets/css/main.min.css" rel="stylesheet">
+</head>
+
+<body>
+<main class="box" id="login">
+<header class="box_header">
+	<div class="header_left"><div class="header_img"></div></div>
+	<h1 class="header_title" v-if='title'>{{title}}</h1>
+</header>
+<article class="box_content">
+	<p class="content_msg" v-if='msg' v-html="msg"></p>
+	<label class="content_label" v-for='input in inputs' >
+	<template v-if="input.type === 'checkbox'" >
+
+		<input class="content_input content_checkbox" :type="input.type" :placeholder="input.text" :required="input.required"/>
+						{{input.title}}
+	</template>
+	<template v-else >
+				{{input.title}}
+		<div class="content_wrapper"><span v-if="input.required" class="content_require"></span><input class="content_input"data-state="true" :type="input.type" :placeholder="input.text" :required="input.required"/>
+		<span class="content_wrapper-msg"></span></div>
+	</template>
+	</label>
+</article>
+<footer class="box_footer" :class="name">
+	<template v-for='link in links' >
+		<template v-if="link.action">
+			<component :is="link.type" @click="link.action">{{link.text}}</component>
+		</template>
+		<template v-else >
+			<component :is="link.type">{{link.text}}</component>
+		</template>
+	</template>
+</footer></main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script defer src="assets/js/main.js" ></script>
+</body>
+</html>
+
